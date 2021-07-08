@@ -5,16 +5,65 @@
     <arg name="wlan0" default="192.168.1.20" />
     <arg name="veh" />
     <group ns="$(arg veh)">
-    	<node pkg="bridge" type="bridge.py" name="bridge_joy_to_boat" args="$(arg eth0)" output="screen">
-        	<param name="bridge_type" value="Joy" />
-		<param name="bridge_from" value="joy" />
-		<param name="bridge_to" value="motor/joy" />
-	</node>
+        <node pkg="bridge" type="bridge.py" name="bridge_joy_to_boat" args="$(arg eth0)" output="screen">
+                <param name="bridge_type" value="Joy" />
+                <param name="bridge_from" value="joy" />
+                <param name="bridge_to" value="motor/joy" />
+        </node>
 
-    	<node pkg="bridge" type="bridge.py" name="bridge_odom_to_pc" args="$(arg wlan0)" output="screen">
-        	<param name="bridge_type" value="Odometry" />
-        	<param name="bridge_from" value="localization_gps_imu/odometry" />
-		<param name="bridge_to" value="teleop/gps_imu/odometry" />
-    	</node>
+        <node pkg="bridge" type="bridge.py" name="bridge_odom_to_pc" args="$(arg wlan0)" output="screen">
+                <param name="bridge_type" value="Odometry" />
+                <param name="bridge_from" value="localization_gps_imu/odometry" />
+                <param name="bridge_to" value="teleop/gps_imu/odometry" />
+        </node>
+
+        <node pkg="bridge" type="bridge.py" name="veh_heading" args="$(arg wlan0)" output="screen">
+                <param name="bridge_type" value="Float64" />
+                <param name="bridge_from" value="localization_gps_imu/pub2moos_rpi/VEH_HEADING" />
+                <param name="bridge_to" value="localization_gps_imu/pub2moos/VEH_HEADING" />
+        </node>
+
+        <node pkg="bridge" type="bridge.py" name="veh_speed" args="$(arg wlan0)" output="screen">
+                <param name="bridge_type" value="Float64" />
+                <param name="bridge_from" value="localization_gps_imu/pub2moos_rpi/VEH_SPEED" />
+                <param name="bridge_to" value="localization_gps_imu/pub2moos/VEH_SPEED" />
+        </node>
+
+        <node pkg="bridge" type="bridge.py" name="veh_x" args="$(arg wlan0)" output="screen">
+                <param name="bridge_type" value="Float64" />
+                <param name="bridge_from" value="localization_gps_imu/pub2moos_rpi/VEH_X" />
+                <param name="bridge_to" value="localization_gps_imu/pub2moos/VEH_X" />
+        </node>
+
+        <node pkg="bridge" type="bridge.py" name="veh_y" args="$(arg wlan0)" output="screen">
+                <param name="bridge_type" value="Float64" />
+                <param name="bridge_from" value="localization_gps_imu/pub2moos_rpi/VEH_Y" />
+                <param name="bridge_to" value="localization_gps_imu/pub2moos/VEH_Y" />
+        </node>
+
+        <node pkg="bridge" type="bridge.py" name="veh_lat" args="$(arg wlan0)" output="screen">
+                <param name="bridge_type" value="Float64" />
+                <param name="bridge_from" value="localization_gps_imu/pub2moos_rpi/VEH_LAT" />
+                <param name="bridge_to" value="localization_gps_imu/pub2moos/VEH_LAT" />
+        </node>
+
+        <node pkg="bridge" type="bridge.py" name="veh_lon" args="$(arg wlan0)" output="screen">
+                <param name="bridge_type" value="Float64" />
+                <param name="bridge_from" value="localization_gps_imu/pub2moos_rpi/LON" />
+                <param name="bridge_to" value="localization_gps_imu/pub2moos/LON" />
+        </node>
+		
+        <node pkg="bridge" type="bridge.py" name="veh_r_thrust_cmd" args="$(arg wlan0)" output="screen">
+                <param name="bridge_type" value="Float32" />
+                <param name="bridge_from" value="pub2ros/thrusters/right_thrust_cmd" />
+                <param name="bridge_to" value="pub2ros_rpi/thrusters/right_thrust_cmd" />
+        </node>
+
+        <node pkg="bridge" type="bridge.py" name="veh_l_thrust_cmd" args="$(arg wlan0)" output="screen">
+                <param name="bridge_type" value="Float32" />
+                <param name="bridge_from" value="pub2ros/thrusters/left_thrust_cmd" />
+                <param name="bridge_to" value="pub2ros_rpi/thrusters/left_thrust_cmd" />
+        </node>
     </group>
 </launch>
+                                         
