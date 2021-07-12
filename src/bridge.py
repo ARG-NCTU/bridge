@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 import rospy
 import os
-from std_msgs.msg import Int16, Float64
+from std_msgs.msg import Int16, Float64, Float32
 from sensor_msgs.msg import Image, CompressedImage, Joy, PointCloud2
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry, OccupancyGrid, Path
@@ -14,7 +14,7 @@ import argparse
 class_type = {'Int16': Int16, 'Image': Image, 'Joy': Joy, 'PointCloud2':PointCloud2,
               'CompressedImage': CompressedImage, 'Twist': Twist, 'Float64': Float64,
               'Odometry': Odometry, 'OccupancyGrid':OccupancyGrid, 'TFMessage':TFMessage,
-              'Marker': Marker, 'Path': Path, 'MarkerArray': MarkerArray}
+              'Marker': Marker, 'Path': Path, 'MarkerArray': MarkerArray, 'Float32': Float32}
 
 
 class Bridge(object):
